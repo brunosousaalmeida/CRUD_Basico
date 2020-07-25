@@ -77,7 +77,6 @@
             // 
             this.txtID.Location = new System.Drawing.Point(127, 86);
             this.txtID.Name = "txtID";
-            this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(181, 20);
             this.txtID.TabIndex = 3;
             // 
@@ -135,6 +134,9 @@
             // 
             // dgvDados
             // 
+            this.dgvDados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDados.Location = new System.Drawing.Point(22, 231);
             this.dgvDados.Name = "dgvDados";
@@ -149,6 +151,7 @@
             this.txtConsultar.TabIndex = 11;
             this.txtConsultar.Text = "Consultar";
             this.txtConsultar.UseVisualStyleBackColor = true;
+            this.txtConsultar.Click += new System.EventHandler(this.txtConsultar_Click);
             // 
             // label4
             // 

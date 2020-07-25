@@ -82,9 +82,6 @@ namespace CRUD_Basico
                 da.Fill(ds);
 
                 dgvDados.DataSource = ds.Tables[0];
-               
-
-                
                 
                 txtNome.Clear();
                 txtNumero.Clear();
@@ -109,6 +106,42 @@ namespace CRUD_Basico
         {
             txtNome.Clear();
             txtNumero.Clear();
+        }
+
+        private void txtConsultar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexao = new SqlConnection("Server=LAPTOP-DPAT0JHO\\SQLEXPRESS;Database=Cliente;User Id=AcessoCliente; Password = 123;");
+                strSql = "SELECT * FROM CAD_CLIENTE WHERE ID = @ID";
+                comando = new SqlCommand(strSql, conexao);
+                comando.Parameters.AddWithValue("@ID", txtID.Text);
+
+
+                conexao.Open();
+                dr = comando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    txtNome.Text = (string)dr["nome"];
+                    txtNumero.Text = Convert.ToString(dr["numero"]);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+                comando.Clone();
+                conexao = null;
+                comando = null;
+
+            }
         }
     }
 }
