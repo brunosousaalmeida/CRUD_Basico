@@ -42,7 +42,7 @@ namespace CRUD_Basico
 
                 conexao.Open();
                 comando.ExecuteNonQuery();
-                txtNome.Clear();
+                txtID.Clear();
                 txtNumero.Clear();
                 txtNome.Focus();
 
@@ -140,6 +140,89 @@ namespace CRUD_Basico
                 comando.Clone();
                 conexao = null;
                 comando = null;
+
+            }
+        }
+
+        private void txtEditar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexao = new SqlConnection("Server=LAPTOP-DPAT0JHO\\SQLEXPRESS;Database=Cliente;User Id=AcessoCliente; Password = 123;");
+                strSql = "UPDATE CAD_CLIENTE SET NOME = @NOME, NUMERO = @NUMERO WHERE ID = @ID";
+                comando = new SqlCommand(strSql, conexao);
+                comando.Parameters.AddWithValue("@ID", txtID.Text);
+                comando.Parameters.AddWithValue("@NOME", txtNome.Text);
+                comando.Parameters.AddWithValue("@NUMERO", txtNumero.Text);
+
+                conexao.Open();
+                dr = comando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    txtNome.Text = (string)dr["nome"];
+                    txtNumero.Text = Convert.ToString(dr["numero"]);
+                }
+
+                MessageBox.Show("Cadastro atualizado com sucesso!", "Cadastro Atualizado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+                comando.Clone();
+                conexao = null;
+                comando = null;
+                txtID.Clear();
+                txtNumero.Clear();
+                txtNome.Focus();
+
+            }
+
+        }
+
+        private void txtExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexao = new SqlConnection("Server=LAPTOP-DPAT0JHO\\SQLEXPRESS;Database=Cliente;User Id=AcessoCliente; Password = 123;");
+                strSql = "DELETE FROM CAD_CLIENTE WHERE ID = @ID";
+                comando = new SqlCommand(strSql, conexao);
+                comando.Parameters.AddWithValue("@ID", txtID.Text);
+
+                conexao.Open();
+                dr = comando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    txtNome.Text = (string)dr["nome"];
+                    txtNumero.Text = Convert.ToString(dr["numero"]);
+                }
+
+                MessageBox.Show("Cadastro Excluído com Sucesso!", "Cadastro Excluído", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+                comando.Clone();
+                conexao = null;
+                comando = null;
+                txtID.Clear();
+                txtNumero.Clear();
+                txtNome.Focus();
 
             }
         }

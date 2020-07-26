@@ -112,6 +112,7 @@
             this.txtEditar.TabIndex = 7;
             this.txtEditar.Text = "Editar";
             this.txtEditar.UseVisualStyleBackColor = true;
+            this.txtEditar.Click += new System.EventHandler(this.txtEditar_Click);
             // 
             // txtExcluir
             // 
@@ -121,6 +122,7 @@
             this.txtExcluir.TabIndex = 8;
             this.txtExcluir.Text = "Excluir";
             this.txtExcluir.UseVisualStyleBackColor = true;
+            this.txtExcluir.Click += new System.EventHandler(this.txtExcluir_Click);
             // 
             // txtExibir
             // 
